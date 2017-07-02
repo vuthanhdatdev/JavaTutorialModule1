@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Demo;
+package Tuan1;
 
 /**
  *
  * @author hv
  */
-public class GiaiTHua extends javax.swing.JFrame {
+public class TinhHoaDon extends javax.swing.JFrame {
 
     /**
-     * Creates new form GiaiTHua
+     * Creates new form TinhHoaDon
      */
-    public GiaiTHua() {
+    public TinhHoaDon() {
         initComponents();
     }
 
@@ -27,24 +27,24 @@ public class GiaiTHua extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtRes = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txtSL = new javax.swing.JTextField();
+        txtDG = new javax.swing.JTextField();
+        txtRes = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         btnTinh = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Số:");
+        jLabel1.setText("Số lượng:");
+
+        jLabel2.setText("Đơn giá:");
 
         txtRes.setEditable(false);
-        txtRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtResActionPerformed(evt);
-            }
-        });
 
-        jLabel2.setText("Giai Thừa:");
+        jLabel3.setText("thành tiền:");
 
         btnTinh.setText("Tính");
         btnTinh.addActionListener(new java.awt.event.ActionListener() {
@@ -53,67 +53,61 @@ public class GiaiTHua extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("tính giá trị hóa đơn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnTinh)
-                    .addComponent(txtRes))
-                .addContainerGap(189, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtRes, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                .addComponent(txtDG)
+                                .addComponent(txtSL)))))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(txtSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(36, 36, 36)
+                    .addComponent(jLabel3))
+                .addGap(38, 38, 38)
                 .addComponent(btnTinh)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtResActionPerformed
-
-    public long TinhGiaiThua(int number)
-    {
-        long gt=1;
-        if(number<0){
-            return -1;
-        }
-        else{
-            for(int i=1;i<=number;i++)
-            {
-                gt=gt*i;
-            }
-            return gt;
-        }
-    }
     private void btnTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhActionPerformed
         // TODO add your handling code here:
-        int num = Integer.parseInt(txtNumber.getText());
-        long res = TinhGiaiThua(num);
-        if(res>0)
-        {
-            txtRes.setText(""+res);
-        }
+        float SL = Float.parseFloat(txtSL.getText());
+        float DG = Float.parseFloat(txtDG.getText());
+        float res = SL * DG;
+        txtRes.setText(""+ res);
     }//GEN-LAST:event_btnTinhActionPerformed
 
     /**
@@ -133,20 +127,20 @@ public class GiaiTHua extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiaiTHua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TinhHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiaiTHua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TinhHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiaiTHua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TinhHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiaiTHua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TinhHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GiaiTHua().setVisible(true);
+                new TinhHoaDon().setVisible(true);
             }
         });
     }
@@ -155,7 +149,10 @@ public class GiaiTHua extends javax.swing.JFrame {
     private javax.swing.JButton btnTinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtNumber;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField txtDG;
     private javax.swing.JTextField txtRes;
+    private javax.swing.JTextField txtSL;
     // End of variables declaration//GEN-END:variables
 }
