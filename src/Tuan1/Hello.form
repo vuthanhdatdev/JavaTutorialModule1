@@ -30,12 +30,10 @@
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtName" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtHello" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnSubmit" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnSubmit" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHello" min="-2" pref="148" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="202" max="32767" attributes="0"/>
+              <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,8 +45,8 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="txtName" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="txtHello" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtHello" min="-2" pref="19" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="139" max="32767" attributes="0"/>
