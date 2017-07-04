@@ -17,7 +17,10 @@ public class ListBoxDemo extends javax.swing.JFrame {
     /**
      * Creates new form ListBox
      */
+    //TODO: Declare instance
+    DefaultListModel defList;
     public ListBoxDemo() {
+        defList = new DefaultListModel();
         initComponents();
     }
 
@@ -140,8 +143,8 @@ public class ListBoxDemo extends javax.swing.JFrame {
 
     private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateActionPerformed
         // TODO add your handling code here:
-        //DefaultListModel defList = new DefaultListModel();
-        DefaultListModel defList = (DefaultListModel) jList1.getModel() ;
+        //DefaultListModel defList = (DefaultListModel) jList1.getModel() ;
+        
 //        for(int i =1;i<=12;i++){
 //            defList.addElement("Tháng "+i);
 //        }
