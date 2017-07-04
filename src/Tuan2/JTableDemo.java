@@ -188,7 +188,7 @@ public class JTableDemo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JTableDemo().setVisible(true);
-            }
+            } 
         });
     }
 

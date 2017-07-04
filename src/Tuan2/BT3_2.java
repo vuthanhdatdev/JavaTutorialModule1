@@ -7,6 +7,11 @@ package Tuan2;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,12 +21,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hv
  */
-public class frmBT3_2 extends javax.swing.JFrame {
+public class BT3_2 extends javax.swing.JFrame {
 
     /**
      * Creates new form frmBT3_2
      */
-    public frmBT3_2() {
+    public BT3_2() {
         initComponents();
     }
 
@@ -200,6 +205,13 @@ public class frmBT3_2 extends javax.swing.JFrame {
         dtm.setValueAt(hoTen,sd, 0);
         dtm.setValueAt(dienThoai,sd, 1);
         dtm.setValueAt(hinhAnh,sd, 2);
+        try{
+            FileWriter fw = new FileWriter("lienhe.txt",true);
+            fw.write(hoTen+","+dienThoai+","+hinhAnh+"\n");
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BT3_2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnThemLienHeActionPerformed
 
     private void btnXoaLienHeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLienHeActionPerformed
@@ -230,20 +242,21 @@ public class frmBT3_2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BT3_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmBT3_2().setVisible(true);
+                new BT3_2().setVisible(true);
             }
         });
     }

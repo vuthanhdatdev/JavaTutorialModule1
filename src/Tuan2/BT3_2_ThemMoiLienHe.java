@@ -43,7 +43,7 @@ public class BT3_2_ThemMoiLienHe extends javax.swing.JFrame {
         btnThemLienHe = new javax.swing.JButton();
         lblImg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thêm mới liên hệ");
         setResizable(false);
 
@@ -69,7 +69,7 @@ public class BT3_2_ThemMoiLienHe extends javax.swing.JFrame {
 
         lblImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImg.setText("Hình ảnh");
-        lblImg.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblImg.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

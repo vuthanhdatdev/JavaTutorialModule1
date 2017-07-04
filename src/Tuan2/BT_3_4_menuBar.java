@@ -5,9 +5,18 @@
  */
 package Tuan2;
 
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
+
 /**
  *
- * @author HOCVIEN
+ * @author Vu THanh Dat
  */
 public class BT_3_4_menuBar extends javax.swing.JFrame {
 
@@ -28,49 +37,87 @@ public class BT_3_4_menuBar extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu7 = new javax.swing.JMenu();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        mnbMenu = new javax.swing.JMenuBar();
+        mnBT = new javax.swing.JMenu();
+        mniBT3_1 = new javax.swing.JMenuItem();
+        mniBT3_2 = new javax.swing.JMenuItem();
+        mnApplication = new javax.swing.JMenu();
+        mniSourceTree = new javax.swing.JMenuItem();
+        mniExplorer = new javax.swing.JMenuItem();
+        mnGioiThieu = new javax.swing.JMenu();
+        mniGioiThieu = new javax.swing.JMenuItem();
+        mniDangNhap = new javax.swing.JMenuItem();
+        mniThoat = new javax.swing.JMenuItem();
 
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
-        jMenu1.setText("Bài 1");
-        jMenuBar1.add(jMenu1);
+        mnBT.setText("Bài tập");
 
-        jMenu2.setText("Bài 2");
-        jMenuBar1.add(jMenu2);
+        mniBT3_1.setText("Bài tập 3_1");
+        mniBT3_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBT3_1ActionPerformed(evt);
+            }
+        });
+        mnBT.add(mniBT3_1);
 
-        jMenu3.setText("Bài 3");
-        jMenuBar1.add(jMenu3);
+        mniBT3_2.setText("Bài tập 3_2");
+        mniBT3_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBT3_2ActionPerformed(evt);
+            }
+        });
+        mnBT.add(mniBT3_2);
 
-        jMenu4.setText("Bài 4");
-        jMenuBar1.add(jMenu4);
+        mnbMenu.add(mnBT);
 
-        jMenu5.setText("Bài 5");
-        jMenuBar1.add(jMenu5);
+        mnApplication.setText("Ứng dụng");
 
-        jMenu6.setText("Bài 6");
-        jMenuBar1.add(jMenu6);
+        mniSourceTree.setText("SourceTree");
+        mniSourceTree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSourceTreeActionPerformed(evt);
+            }
+        });
+        mnApplication.add(mniSourceTree);
 
-        jMenu8.setText("Bài 7");
-        jMenuBar1.add(jMenu8);
+        mniExplorer.setText("Windows Explorer");
+        mniExplorer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniExplorerActionPerformed(evt);
+            }
+        });
+        mnApplication.add(mniExplorer);
 
-        jMenu9.setText("Bài 8");
-        jMenuBar1.add(jMenu9);
+        mnbMenu.add(mnApplication);
 
-        jMenu10.setText("Bài 9");
-        jMenuBar1.add(jMenu10);
+        mnGioiThieu.setText("Giới thiệu");
 
-        setJMenuBar(jMenuBar1);
+        mniGioiThieu.setText("Giới thiệu");
+        mniGioiThieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniGioiThieuActionPerformed(evt);
+            }
+        });
+        mnGioiThieu.add(mniGioiThieu);
+
+        mniDangNhap.setText("Đăng nhập");
+        mnGioiThieu.add(mniDangNhap);
+
+        mniThoat.setText("Thoát");
+        mniThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThoatActionPerformed(evt);
+            }
+        });
+        mnGioiThieu.add(mniThoat);
+
+        mnbMenu.add(mnGioiThieu);
+
+        setJMenuBar(mnbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +132,48 @@ public class BT_3_4_menuBar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mniBT3_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBT3_2ActionPerformed
+        // TODO add your handling code here:
+        BT3_2_ThemMoiLienHe frm = new BT3_2_ThemMoiLienHe();
+        frm.setVisible(true);
+    }//GEN-LAST:event_mniBT3_2ActionPerformed
+
+    private void mniThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThoatActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_mniThoatActionPerformed
+
+    private void mniGioiThieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniGioiThieuActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Ứng dụng tổng quát bài tập\nPhát triển bởi : CoreJ Team Tech Tips");
+    }//GEN-LAST:event_mniGioiThieuActionPerformed
+
+    private void mniBT3_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBT3_1ActionPerformed
+        // TODO add your handling code here:
+        BT3_1_ThongTinLienHe frm = new BT3_1_ThongTinLienHe();
+        frm.setVisible(true);
+    }//GEN-LAST:event_mniBT3_1ActionPerformed
+
+    private void mniSourceTreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSourceTreeActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Process process = new ProcessBuilder("C:\\Program Files (x86)\\Atlassian\\SourceTree\\SourceTree.exe").start();
+        } catch (IOException ex) {
+            Logger.getLogger(BT_3_4_menuBar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mniSourceTreeActionPerformed
+
+    private void mniExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExplorerActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Process process = new ProcessBuilder("C:\\Windows\\Explorer.exe").start();
+        } catch (IOException ex) {
+            Logger.getLogger(BT_3_4_menuBar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mniExplorerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,16 +211,17 @@ public class BT_3_4_menuBar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mnApplication;
+    private javax.swing.JMenu mnBT;
+    private javax.swing.JMenu mnGioiThieu;
+    private javax.swing.JMenuBar mnbMenu;
+    private javax.swing.JMenuItem mniBT3_1;
+    private javax.swing.JMenuItem mniBT3_2;
+    private javax.swing.JMenuItem mniDangNhap;
+    private javax.swing.JMenuItem mniExplorer;
+    private javax.swing.JMenuItem mniGioiThieu;
+    private javax.swing.JMenuItem mniSourceTree;
+    private javax.swing.JMenuItem mniThoat;
     // End of variables declaration//GEN-END:variables
 }
