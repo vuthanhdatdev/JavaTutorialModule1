@@ -1,5 +1,3 @@
-abd,123125,F:\Module1\src\img\8.jpg
-abd,123125,F:\Module1\src\img\8.jpg
-abd,123125,F:\Module1\src\img\8.jpg
-abcdef,123124,C:\Users\BaoHA\Desktop\Module1\src\img\7.jpg
-abcdef,123124,C:\Users\BaoHA\Desktop\Module1\src\img\7.jpg
+ABC|1234567|F:\Module1\src\img\7.jpg
+412312|1234567|F:\Module1\src\img\7.jpg
+asdfadsf|1234567|F:\Module1\src\img\7.jpg

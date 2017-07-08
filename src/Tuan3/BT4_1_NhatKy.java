@@ -5,21 +5,35 @@
  */
 package Tuan3;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author BaoHa
  */
 public class BT4_1_NhatKy extends javax.swing.JFrame {
-
+    //protected TimerThread timerThread;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String datetimeFormated;
     /**
      * Creates new form BT4_1
      */
     public BT4_1_NhatKy() {
         initComponents();
-        txtDate.setText(String.valueOf(LocalDateTime.now()));
+        datetimeFormated = LocalDateTime.now().format(formatter);
+        txtDate.setText(String.valueOf(datetimeFormated));
     }
 
     /**
@@ -42,7 +56,6 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NK");
-        setExtendedState(6);
 
         btnDoc.setText("Đọc");
         btnDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +96,13 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        txtDate.setEditable(false);
+        txtDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtDateMouseExited(evt);
+            }
+        });
+
         jLabel1.setText("Ngày giờ:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,14 +112,15 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,21 +145,43 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
         // TODO add your handling code here:
-        readFile("diary.txt");
+        List<String> lst = new ArrayList<String>();
+        lst = readFile("diary.txt");
+        //System.out.println(lst);
+        for(String item:lst){
+            System.out.println(item);
+        }
     }//GEN-LAST:event_btnDocActionPerformed
 
-    private int readFile(String path){
+    private void txtDateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateMouseExited
+
+    private List<String> readFile(String path){
+        List<String> lst = new ArrayList<>();
+        //lst = new List<String>();
         try {
-            FileInputStream fin = new FileInputStream(path);
-            String line = "";
-//            while((line=fin.read())!=-1)
-//            {
-//                System.out.println(line);
-//            }
-        
-        }catch (Exception e) {
+            FileReader fr = new FileReader(path);
+            //InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+            try (BufferedReader br = new BufferedReader(fr)) {
+                String line = "";
+                while((line=br.readLine())!=null){
+                    lst.add(line);
+                    //System.out.println(line);
+                }
+                br.close();
+                return lst;
+            }
+        }catch (IOException ex1) {
+            System.out.println(ex1.getMessage());
         }
-        return -1;
+        catch(Exception ex2){
+            System.out.println(ex2.getMessage());
+        }
+//        catch(FileNotFoundException ex2){
+//            Logger.getLogger(ReadAndWriteFileDemo.class.getName()).log(Level.SEVERE, null, ex2);
+//        }
+        return lst;
     }
     /**
      * @param args the command line arguments

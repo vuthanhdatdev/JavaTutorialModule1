@@ -6,10 +6,13 @@
 package Tuan2;
 
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -26,10 +29,37 @@ public class BT3_2 extends javax.swing.JFrame {
     /**
      * Creates new form frmBT3_2
      */
+    DefaultTableModel dtm = null;
+    
     public BT3_2() {
         initComponents();
     }
 
+    private List<String> readFile(String path){
+        List<String> lst = new ArrayList<>();
+        //lst = new List<String>();
+        try {
+            FileReader fr = new FileReader(path);
+            try (BufferedReader br = new BufferedReader(fr)) {
+                String line = "";
+                while((line=br.readLine())!=null){
+                    lst.add(line);
+                    //System.out.println(line);
+                }
+                br.close();
+                return lst;
+            }
+        }catch (IOException ex1) {
+            System.out.println(ex1.getMessage());
+        }
+        catch(Exception ex2){
+            System.out.println(ex2.getMessage());
+        }
+//        catch(FileNotFoundException ex2){
+//            Logger.getLogger(ReadAndWriteFileDemo.class.getName()).log(Level.SEVERE, null, ex2);
+//        }
+        return lst;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,9 +219,9 @@ public class BT3_2 extends javax.swing.JFrame {
             lblHinhAnh.setIcon(icon);
         }
     }//GEN-LAST:event_btnChonHinhActionPerformed
-    DefaultTableModel dtm = null;
+    
     private void btnThemLienHeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLienHeActionPerformed
-        dtm = (DefaultTableModel) jTable1.getModel();
+        
         String hoTen, dienThoai, hinhAnh;
         hoTen = txtHoTen.getText();
         dienThoai=txtDienThoai.getText();
@@ -207,7 +237,7 @@ public class BT3_2 extends javax.swing.JFrame {
         dtm.setValueAt(hinhAnh,sd, 2);
         try{
             FileWriter fw = new FileWriter("lienhe.txt",true);
-            fw.write(hoTen+","+dienThoai+","+hinhAnh+"\n");
+            fw.write(hoTen+"|"+dienThoai+"|"+hinhAnh+"\n");
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(BT3_2.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,7 +251,14 @@ public class BT3_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaLienHeActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        dtm = (DefaultTableModel) jTable1.getModel();
         jTable1.getColumnModel().getColumn(2).setCellRenderer(new ImageTableCellRenderer(80, 80));
+        List<String> lst = readFile("lienhe.txt");
+        
+        for(String item:lst){
+            String[] row = item.split("\\|");
+            dtm.addRow(new String[]{row[0],row[1],row[2]});
+        }
         
     }//GEN-LAST:event_formWindowOpened
 
