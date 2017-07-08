@@ -5,14 +5,8 @@
  */
 package Tuan3;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 /**
  *
@@ -130,16 +124,17 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
         // TODO add your handling code here:
-        readFile("C:\\Users\\PC12-13\\Desktop\\test.txt");
+        readFile("diary.txt");
     }//GEN-LAST:event_btnDocActionPerformed
 
     private int readFile(String path){
-        try (BufferedReader in = new BufferedReader(
-                new FileReader(path))){
+        try {
+            FileInputStream fin = new FileInputStream(path);
             String line = "";
-            while((line=in.readLine())!=null){
-                System.out.println(line);
-            }
+//            while((line=fin.read())!=-1)
+//            {
+//                System.out.println(line);
+//            }
         
         }catch (Exception e) {
         }

@@ -40,7 +40,7 @@ public class BT3_1_ThongTinLienHe extends javax.swing.JFrame {
         lblDienThoai = new javax.swing.JLabel();
         lblHinhAnh = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thông tin liên hệ");
         setResizable(false);
 
@@ -51,6 +51,11 @@ public class BT3_1_ThongTinLienHe extends javax.swing.JFrame {
         jLabel3.setText("Hình ảnh");
 
         btnHienThi.setText("Hiển thị");
+        btnHienThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHienThiActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Họ tên");
 
@@ -134,6 +139,11 @@ public class BT3_1_ThongTinLienHe extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHienThiActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnHienThiActionPerformed
 
     /**
      * @param args the command line arguments

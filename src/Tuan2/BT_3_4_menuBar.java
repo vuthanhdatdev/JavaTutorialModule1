@@ -52,6 +52,7 @@ public class BT_3_4_menuBar extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Exercise Management");
         setExtendedState(6);
 
         mnBT.setText("Bài tập");
@@ -135,7 +136,7 @@ public class BT_3_4_menuBar extends javax.swing.JFrame {
 
     private void mniBT3_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBT3_2ActionPerformed
         // TODO add your handling code here:
-        BT3_2_ThemMoiLienHe frm = new BT3_2_ThemMoiLienHe();
+        BT3_2 frm = new BT3_2();
         frm.setVisible(true);
     }//GEN-LAST:event_mniBT3_2ActionPerformed
 
