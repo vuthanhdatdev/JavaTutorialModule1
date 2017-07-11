@@ -5,19 +5,24 @@
  */
 package Tuan3;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,7 +55,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
         btnGhi = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtNK = new javax.swing.JTextArea();
         txtDate = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -65,8 +70,18 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
         });
 
         btnGhi.setText("Ghi mới");
+        btnGhi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGhiActionPerformed(evt);
+            }
+        });
 
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,9 +107,10 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtNK.setColumns(20);
+        txtNK.setLineWrap(true);
+        txtNK.setRows(5);
+        jScrollPane1.setViewportView(txtNK);
 
         txtDate.setEditable(false);
         txtDate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,17 +161,52 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
         // TODO add your handling code here:
-        List<String> lst = new ArrayList<String>();
-        lst = readFile("diary.txt");
-        //System.out.println(lst);
-        for(String item:lst){
-            System.out.println(item);
+        try{
+            String date,content,line;
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream("diary.bin")));
+            while (true) {                
+                try{
+                    date = dis.readUTF();
+                    content= dis.readUTF();
+                    line = date + "\n" + content +"\n\n";
+                }catch(EOFException ex2){
+                    break;
+                }
+                txtNK.setText(line);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BT4_1_NhatKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BT4_1_NhatKy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDocActionPerformed
 
     private void txtDateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseExited
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDateMouseExited
+
+    private void btnGhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGhiActionPerformed
+        // TODO add your handling code here:
+        txtNK.setText("");
+    }//GEN-LAST:event_btnGhiActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        try {
+            // TODO add your handling code here:
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("diary.bin",true)));
+            String content = txtNK.getText();
+            dos.writeUTF(datetimeFormated);
+            dos.writeUTF(content);
+            dos.close();
+            JOptionPane.showMessageDialog(rootPane, "Write Success!");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BT4_1_NhatKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BT4_1_NhatKy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLuuActionPerformed
 
     private List<String> readFile(String path){
         List<String> lst = new ArrayList<>();
@@ -226,7 +277,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtDate;
+    private javax.swing.JTextArea txtNK;
     // End of variables declaration//GEN-END:variables
 }
