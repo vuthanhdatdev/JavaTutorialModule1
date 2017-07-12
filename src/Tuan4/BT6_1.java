@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package Tuan4;
+
 import Tuan4.PhanSo;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author HOCVIEN
@@ -42,6 +44,7 @@ public class BT6_1 extends javax.swing.JFrame {
         btnTinh = new javax.swing.JButton();
         txtKQ = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        btnTinhGT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +72,13 @@ public class BT6_1 extends javax.swing.JFrame {
         txtKQ.setEditable(false);
 
         jLabel7.setText("KQ:");
+
+        btnTinhGT.setText("Tính giá trị");
+        btnTinhGT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTinhGTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +110,7 @@ public class BT6_1 extends javax.swing.JFrame {
                         .addComponent(cbPT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtKQ, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(25, 25, 25)
@@ -108,7 +118,8 @@ public class BT6_1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtMS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTinhGT))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,7 +157,9 @@ public class BT6_1 extends javax.swing.JFrame {
                     .addComponent(txtKQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(54, 54, 54)
-                .addComponent(btnTinh)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTinh)
+                    .addComponent(btnTinhGT))
                 .addGap(49, 49, 49))
         );
 
@@ -155,86 +168,124 @@ public class BT6_1 extends javax.swing.JFrame {
 
     private void btnTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhActionPerformed
         // TODO add your handling code here:
-        int ts1,ts2,ms1,ms2;
-        PhanSo ps1,ps2,result;
+        int ts1, ts2, ms1, ms2;
+        PhanSo ps1, ps2, result;
         String pheptoan;
-        try{
+        try {
             ts1 = Integer.parseInt(txtTS1.getText());
             ts2 = Integer.parseInt(txtTS2.getText());
             ms1 = Integer.parseInt(txtMS1.getText());
             ms2 = Integer.parseInt(txtMS2.getText());
-            ps1 = new PhanSo(ts1, ms1);
-            ps2 = new PhanSo(ts2, ms2);
-            pheptoan = cbPT.getSelectedItem().toString();
-            result = tinh(ps1, ps2, pheptoan);
-            int usc = tinhUSCLN(result.tuSo, result.mauSo);
-            if(result.tuSo==0){
-                txtKQ.setText(String.valueOf(0));
+            if (ms2 == 0 || ms1 == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Mẫu số phải khác 0! Vui lòng nhập lại!");
+            } else {
+                ps1 = new PhanSo(ts1, ms1);
+                ps2 = new PhanSo(ts2, ms2);
+                pheptoan = cbPT.getSelectedItem().toString();
+                result = tinh(ps1, ps2, pheptoan);
+                int usc = tinhUSCLN(result.tuSo, result.mauSo);
+                if (result.tuSo == 0) {
+                    txtKQ.setText(String.valueOf(0));
+                } else if (result.tuSo == result.mauSo) {
+                    txtKQ.setText(String.valueOf(1));
+                } else if (result.tuSo % usc == 0 && result.mauSo % usc == 0) {
+                    txtKQ.setText((result.tuSo / usc) + "/" + (result.mauSo / usc));
+                }
             }
-            else if(result.tuSo==result.mauSo){
-                txtKQ.setText(String.valueOf(1));
-            }
-            else if(result.tuSo%usc==0 && result.mauSo%usc==0){
-                txtKQ.setText((result.tuSo/usc) + "/" + (result.mauSo/usc));
-            }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Invalid input:" + ex.getMessage());
             ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btnTinhActionPerformed
 
-    private int tinhUSCLN(int a,int b){
+    private void btnTinhGTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhGTActionPerformed
+        // TODO add your handling code here:
+        int ts1, ts2, ms1, ms2;
+        PhanSo ps1, ps2, result;
+        String pheptoan;
+        try {
+            ts1 = Integer.parseInt(txtTS1.getText());
+            ts2 = Integer.parseInt(txtTS2.getText());
+            ms1 = Integer.parseInt(txtMS1.getText());
+            ms2 = Integer.parseInt(txtMS2.getText());
+            if (ms2 == 0 || ms1 == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Mẫu số phải khác 0! Vui lòng nhập lại!");
+            } else {
+                ps1 = new PhanSo(ts1, ms1);
+                ps2 = new PhanSo(ts2, ms2);
+                pheptoan = cbPT.getSelectedItem().toString();
+                result = tinh(ps1, ps2, pheptoan);
+                int usc = tinhUSCLN(result.tuSo, result.mauSo);
+                if (result.tuSo == 0) {
+                    txtKQ.setText(String.valueOf(0));
+                } else if (result.tuSo == result.mauSo) {
+                    txtKQ.setText(String.valueOf(1));
+                } else if (result.tuSo % usc == 0 && result.mauSo % usc == 0) {
+                    float res = (float)result.tuSo / result.mauSo;
+                    txtKQ.setText(""+res);
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid input:" + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnTinhGTActionPerformed
+
+    private int tinhUSCLN(int a, int b) {
         int r;
-        while(b!=0){
-            r=a%b;
-            a=b;
-            b=r;
+        while (b != 0) {
+            r = a % b;
+            a = b;
+            b = r;
         }
         return a;
     }
-    private PhanSo tinh(PhanSo ps1,PhanSo ps2,String pheptoan){
-        if(pheptoan=="+"){
+
+    private PhanSo tinh(PhanSo ps1, PhanSo ps2, String pheptoan) {
+        if (pheptoan == "+") {
             return tinhTong(ps1, ps2);
         }
-        if(pheptoan=="-"){
+        if (pheptoan == "-") {
             return tinhHieu(ps1, ps2);
         }
-        if(pheptoan=="*"){
+        if (pheptoan == "*") {
             return tinhTich(ps1, ps2);
         }
-        if(pheptoan=="/"){
+        if (pheptoan == "/") {
             return tinhThuong(ps1, ps2);
         }
         return null;
     }
-    private PhanSo tinhTong(PhanSo ps1,PhanSo ps2){
+
+    private PhanSo tinhTong(PhanSo ps1, PhanSo ps2) {
         PhanSo result = new PhanSo();
-        result.tuSo = ps1.tuSo* ps2.mauSo + ps2.tuSo * ps1.mauSo;
+        result.tuSo = ps1.tuSo * ps2.mauSo + ps2.tuSo * ps1.mauSo;
         result.mauSo = ps1.mauSo * ps2.mauSo;
         return result;
     }
-    
-    private PhanSo tinhHieu(PhanSo ps1,PhanSo ps2){
+
+    private PhanSo tinhHieu(PhanSo ps1, PhanSo ps2) {
         PhanSo result = new PhanSo();
-        result.tuSo = ps1.tuSo* ps2.mauSo - ps2.tuSo * ps1.mauSo;
+        result.tuSo = ps1.tuSo * ps2.mauSo - ps2.tuSo * ps1.mauSo;
         result.mauSo = ps1.mauSo * ps2.mauSo;
         return result;
     }
-    
-    private PhanSo tinhTich(PhanSo ps1,PhanSo ps2){
+
+    private PhanSo tinhTich(PhanSo ps1, PhanSo ps2) {
         PhanSo result = new PhanSo();
-        result.tuSo = ps1.tuSo* ps2.tuSo;
+        result.tuSo = ps1.tuSo * ps2.tuSo;
         result.mauSo = ps1.mauSo * ps2.mauSo;
         return result;
     }
-    
-    private PhanSo tinhThuong(PhanSo ps1,PhanSo ps2){
+
+    private PhanSo tinhThuong(PhanSo ps1, PhanSo ps2) {
         PhanSo result = new PhanSo();
-        result.tuSo = ps1.tuSo* ps2.mauSo;
+        result.tuSo = ps1.tuSo * ps2.mauSo;
         result.mauSo = ps1.mauSo * ps2.tuSo;
         return result;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +323,7 @@ public class BT6_1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTinh;
+    private javax.swing.JButton btnTinhGT;
     private javax.swing.JComboBox<String> cbPT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
