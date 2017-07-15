@@ -5,7 +5,6 @@
  */
 package Tuan4;
 
-import Tuan4.CD;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -149,7 +148,6 @@ public class BT6_2_NhapCD extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-
         CD cd = null; //= new CD(maCD, tenCD, caSi, soBH, gia);
         String maCD, caSi, tenCD;
         int soBH;

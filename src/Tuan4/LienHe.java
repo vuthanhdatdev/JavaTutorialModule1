@@ -4,15 +4,13 @@
  * and open the template in the editor.
  */
 package Tuan4;
-
-import com.sun.xml.internal.ws.developer.Serialization;
+import java.io.Serializable;
 
 /**
  *
  * @author BaoHa
  */
-//@Serialization
-public class LienHe {
+public class LienHe implements Serializable{
 
     public String hoTen;
     public String soDT;

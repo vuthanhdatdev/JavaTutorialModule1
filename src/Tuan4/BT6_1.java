@@ -45,6 +45,7 @@ public class BT6_1 extends javax.swing.JFrame {
         txtKQ = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnTinhGT = new javax.swing.JButton();
+        btnLamLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,13 @@ public class BT6_1 extends javax.swing.JFrame {
             }
         });
 
+        btnLamLai.setText("Làm lại");
+        btnLamLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,34 +100,39 @@ public class BT6_1 extends javax.swing.JFrame {
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnTinh)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(25, 25, 25)
-                                .addComponent(txtTS1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtMS1))))
-                        .addGap(38, 38, 38)
-                        .addComponent(cbPT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtKQ, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(25, 25, 25)
-                        .addComponent(txtTS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTinh)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(txtTS1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(txtMS1))))
+                                .addGap(38, 38, 38)
+                                .addComponent(cbPT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKQ, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(25, 25, 25)
+                                .addComponent(txtTS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnTinhGT)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMS2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTinhGT))
+                        .addGap(132, 132, 132)
+                        .addComponent(btnLamLai)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,7 +173,9 @@ public class BT6_1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTinh)
                     .addComponent(btnTinhGT))
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLamLai)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -232,8 +247,19 @@ public class BT6_1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTinhGTActionPerformed
 
+    private void btnLamLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamLaiActionPerformed
+        // TODO add your handling code here:
+        txtTS1.setText(null);
+        txtTS2.setText(null);
+        txtMS1.setText(null);
+        txtMS2.setText(null);
+        cbPT.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLamLaiActionPerformed
+
     private int tinhUSCLN(int a, int b) {
         int r;
+        a = Math.abs(a);
+        b = Math.abs(b);
         while (b != 0) {
             r = a % b;
             a = b;
@@ -244,16 +270,16 @@ public class BT6_1 extends javax.swing.JFrame {
 
     private PhanSo tinh(PhanSo ps1, PhanSo ps2, String pheptoan) {
         if (pheptoan == "+") {
-            return tinhTong(ps1, ps2);
+            return ps1.tinhTong(ps2);
         }
         if (pheptoan == "-") {
-            return tinhHieu(ps1, ps2);
+            return ps1.tinhHieu(ps2);
         }
         if (pheptoan == "*") {
-            return tinhTich(ps1, ps2);
+            return ps1.tinhTich(ps2);
         }
         if (pheptoan == "/") {
-            return tinhThuong(ps1, ps2);
+            return ps1.tinhThuong(ps2);
         }
         return null;
     }
@@ -322,6 +348,7 @@ public class BT6_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLamLai;
     private javax.swing.JButton btnTinh;
     private javax.swing.JButton btnTinhGT;
     private javax.swing.JComboBox<String> cbPT;

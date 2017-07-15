@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,29 +46,59 @@ public class BT6_4 extends javax.swing.JFrame {
 
     private List<LienHe> readFile(){
         List<LienHe> listLH = new ArrayList<>();
+        //LienHe[] lh={};
         try {
             ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("lh.obj")));
-            try{
-                listLH.add((LienHe) ois.readObject());
-            }catch(EOFException ex1){
-                ois.close();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
+            while(true){
+                try{
+                     listLH.add((LienHe)ois.readObject());
+                }catch (EOFException ex1){
+                    break;
+                    //System.out.println(ex1.getMessage());
+                }
             }
-        } catch (FileNotFoundException ex) {
+            //lh = (LienHe[])ois.readObject();
+            ois.close();
+        }
+        catch (FileNotFoundException ex) {
             Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listLH;
     }
     
-    private void writeFile(LienHe lh){
+    private LienHe[] readFilebyArray(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("lh.obj")));
+            LienHe[] listLH = (LienHe[])ois.readObject();
+            return listLH;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        LienHe[] listLH = new LienHe[0];
+        return null;
+    }
+    
+    private void writeFile(String name,String phone,String fileUrl){
         try{
-            ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("lh.obj")));
+            LienHe[] lh= new LienHe[]{new LienHe(name, phone, fileUrl)};
+            ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("lh.obj",true))){
+                @Override
+                protected void writeStreamHeader() throws IOException{
+                    reset();
+                }
+            };
             oos.writeObject(lh);
+            oos.flush();
             oos.close();
         } catch (IOException ex) {
+            Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(BT6_4.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -263,16 +294,10 @@ public class BT6_4 extends javax.swing.JFrame {
         hoTen = txtHoTen.getText();
         dienThoai=txtDienThoai.getText();
         hinhAnh = txtTapTinHinh.getText();
-        LienHe lh = new LienHe(hoTen, hoTen, hinhAnh);
-        //Cách 1:
+        LienHe lh = new LienHe(hoTen, dienThoai, hinhAnh);
         dtm.addRow(new String[]{hoTen,dienThoai,hinhAnh});
-        writeFile(lh);
-        //Cách 2:
-        //int sd = dtm.getRowCount();
-        //dtm.setRowCount(sd+1);
-        //dtm.setValueAt(hoTen,sd, 0);
-        //dtm.setValueAt(dienThoai,sd, 1);
-        //dtm.setValueAt(hinhAnh,sd, 2);
+        writeFile(hoTen,dienThoai,hinhAnh);
+        JOptionPane.showMessageDialog(rootPane, "Đã thêm liên hệ:"+lh.hoTen+" "+lh.soDT);
     }//GEN-LAST:event_btnThemLienHeActionPerformed
 
     private void btnXoaLienHeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLienHeActionPerformed
@@ -293,10 +318,13 @@ public class BT6_4 extends javax.swing.JFrame {
 
     private void btnDocDSLienHeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocDSLienHeActionPerformed
         // TODO add your handling code here:
-        List<LienHe> listLH = readFile();
+        //LienHe[] listLH = readFile();
+        LienHe[] listLH = readFilebyArray();
+        //dtm = new DefaultTableModel();
         for(LienHe item:listLH){
             dtm.addRow(new String[]{item.hoTen,item.soDT,item.fileUrl});
         }
+        jTable1.setModel(dtm);
     }//GEN-LAST:event_btnDocDSLienHeActionPerformed
 
     /**

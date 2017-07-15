@@ -163,7 +163,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String date,content,line;
-            DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream("diary.bin")));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream("diary.dat")));
             while (true) {                
                 try{
                     date = dis.readUTF();
@@ -172,6 +172,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
                 }catch(EOFException ex2){
                     break;
                 }
+                dis.close();
                 txtNK.setText(line);
             }
             
@@ -195,7 +196,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         try {
             // TODO add your handling code here:
-            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("diary.bin",true)));
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("diary.dat",true)));
             String content = txtNK.getText();
             dos.writeUTF(datetimeFormated);
             dos.writeUTF(content);
