@@ -169,7 +169,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
                     date = dis.readUTF();
                     content= dis.readUTF();
                     line = date + "\n" + content +"\n\n";
-                }catch(EOFException ex2){
+                }catch(EOFException ex1){
                     break;
                 }
                 dis.close();
@@ -199,7 +199,7 @@ public class BT4_1_NhatKy extends javax.swing.JFrame {
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("diary.dat",true)));
             String content = txtNK.getText();
             dos.writeUTF(datetimeFormated);
-            dos.writeUTF(content);
+            dos.writeUTF(content+"\n");
             dos.close();
             JOptionPane.showMessageDialog(rootPane, "Write Success!");
         } catch (FileNotFoundException ex) {

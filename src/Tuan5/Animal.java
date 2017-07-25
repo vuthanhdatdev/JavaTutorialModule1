@@ -9,7 +9,7 @@ package Tuan5;
  *
  * @author BaoHa
  */
-public abstract class Animal {
+public class Animal {
     String name;
     String image;
 
